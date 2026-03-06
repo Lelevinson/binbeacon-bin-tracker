@@ -37,7 +37,7 @@ async function receiveName(e, marker) {
 							<button class="popup-submit-button" onclick="storeUpdates(${x}, ${y}), 	refreshPage();">Submit</button>
 						</center>
 					</div>
-				`)
+				`),
 		)
 		.openPopup();
 }
@@ -58,7 +58,7 @@ export class RecBin {
 
 	static recyclableIcon = L.icon({
 		// this is for adding and styling icon
-		iconUrl: "/frontendstuff/images/recyclablemarker.png",
+		iconUrl: "/images/recyclablemarker.png",
 		iconSize: [37, 37],
 		iconAnchor: [19, 26], // anchor when zooming in/out. lat of anchor is half of the icon size lat (it's horizontal).
 		// long of anchor is same
@@ -81,7 +81,7 @@ export class NorBin {
 	}
 
 	static nonRecyclableIcon = L.icon({
-		iconUrl: "/frontendstuff/images/nonrecyclablemarker.png",
+		iconUrl: "/images/nonrecyclablemarker.png",
 		iconSize: [37, 37],
 		iconAnchor: [19, 26],
 		popupAnchor: [0, -20],
@@ -103,7 +103,7 @@ export class TwoBin {
 	}
 
 	static recyclableAndNonIcon = L.icon({
-		iconUrl: "/frontendstuff/images/twobinmarker.png",
+		iconUrl: "/images/twobinmarker.png",
 		iconSize: [37, 37],
 		iconAnchor: [19, 26],
 		popupAnchor: [0, -20],

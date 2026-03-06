@@ -1,26 +1,26 @@
 {
-  "name": "binbeacon-testing-main",
-  "version": "1.0.0",
-  "description": "wow",
-  "main": "script.js",
-  "scripts": {
-    "devStart": "nodemon backendstuff/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@supabase/supabase-js": "^2.47.11",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "leaflet": "^1.9.4",
-    "node-cron": "^3.0.3"
-  },
-  "type": "module",
-  "devDependencies": {
-    "@types/leaflet": "^1.9.15",
-    "nodemon": "^3.1.9"
-  }
+	"name": "binbeacon-testing-main",
+	"version": "1.0.0",
+	"description": "wow",
+	"main": "script.js",
+	"scripts": {
+		"devStart": "nodemon server/server.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@supabase/supabase-js": "^2.47.11",
+		"cors": "^2.8.5",
+		"dotenv": "^16.4.7",
+		"express": "^4.21.2",
+		"leaflet": "^1.9.4",
+		"node-cron": "^3.0.3"
+	},
+	"type": "module",
+	"devDependencies": {
+		"@types/leaflet": "^1.9.15",
+		"nodemon": "^3.1.9"
+	}
 }

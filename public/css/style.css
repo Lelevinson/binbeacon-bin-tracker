@@ -1,0 +1,473 @@
+/*Pixels (px):
+
+    Use case: Fixed-size elements like borders, icons, or small areas that don't need to adjust to screen size.
+    Why: px is an absolute unit, so it will always stay the same size regardless of screen size or zoom level.
+    Example: font-size: 16px;
+
+Relative Units (rem, em):
+
+    rem (relative to the root element):
+        Use case: For scaling typography or spacing consistently across a page.
+        Why: rem is relative to the root <html> font size, so all sizes adjust proportionally. It’s easier to maintain a consistent design across various screen sizes.
+        Example: If the root font size is 16px, 2rem equals 32px.
+    em (relative to the parent element):
+        Use case: Used mainly for font sizes or spacing that depends on the parent element’s size.
+        Why: em scales based on the parent element, which can make components within larger containers grow/shrink accordingly.
+        Example: font-size: 1.5em; will be 1.5 times the size of the parent element’s font size.
+
+Viewport Units (vw, vh):
+
+    Use case: Responsive layouts, especially for full-screen elements.
+    Why: vw is based on the width of the viewport (browser window), and vh is based on its height. This is great for responsive design where elements need to scale according to the screen size.
+    Example: width: 50vw; will make an element take up 50% of the viewport width.
+
+Percentage (%):
+
+    Use case: For flexible layouts where an element’s size needs to be relative to its parent container.
+    Why: Percentages are fluid and adapt to the size of the parent element, which is useful in responsive designs.
+    Example: width: 80%; makes the element take up 80% of its parent’s width.*/
+
+/* #53c951 color for buttons */
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,600;1,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Chewy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mogra&display=swap");
+
+* {
+	box-sizing: border-box;
+	/* border, margin, padding will all be count inside the value of height and width*/
+	margin: 0;
+	padding: 0;
+	user-select: none !important;
+	/* to disable text-selection, so the '|' will stop blinking in text */
+	-webkit-tap-highlight-color: transparent;
+	/* Remove blue highlight on touch selection */
+}
+
+/* Remove blue highlight when focusing on elements */
+*:focus {
+	outline: none;
+}
+
+html,
+body {
+	height: 100%;
+	font-family: "Raleway", "Chewy", "Mogra", sans-serif;
+	overflow: hidden;
+}
+
+#header {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1em;
+
+	height: 10%;
+	width: 100%;
+	background-color: hsla(129, 69%, 53%, 1);
+	z-index: 10;
+}
+
+.header-image {
+	width: 2.8em;
+	height: 2.8em;
+	margin: 0;
+}
+
+.header-text {
+	flex-grow: 0;
+	flex-shrink: 0;
+	flex-basis: 1;
+
+	cursor: pointer;
+	font-family: "Chewy", sans-serif;
+	font-size: 2.9em;
+	color: hsla(70, 100%, 49%, 1);
+}
+
+.header-text:active {
+	color: hsla(41, 84%, 26%, 1);
+}
+
+#main {
+	transition: transform 0.75s ease;
+	height: 90%;
+	width: 100%;
+}
+
+#map {
+	/*flexbox css for child(s) element*/
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	flex-grow: 0;
+	flex-shrink: 0;
+	flex-basis: 1;
+	/*to make the map full screen*/
+	height: 100%;
+	width: 100%;
+	/*map will stay at most bottom layer*/
+	z-index: 0;
+	/*cursor: url("images/paw.svg"), auto;*/
+}
+
+.bottom-layer {
+	position: absolute;
+	bottom: 1.5em;
+	right: 0.85em;
+	z-index: 1000;
+}
+
+.btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 45px;
+	width: 45px;
+	background-color: white;
+	border: 2.3px solid rgba(128, 128, 128, 0.5);
+	border-radius: 10%;
+	margin-top: 2.5em;
+	margin-left: 0.4em;
+	margin-bottom: 0.75em;
+	/* Make sure the cursor is a pointer, not text */
+	cursor: pointer;
+}
+
+.info-image {
+	height: 80%;
+	width: 80%;
+}
+
+.add-image {
+	height: 83%;
+	width: 83%;
+}
+
+.location-image {
+	height: 90%;
+	width: 90%;
+}
+
+#btn-header.disabled {
+	pointer-events: none; /* Disable interaction */
+}
+
+#btn-question.disabled {
+	background-color: #aaa;
+	opacity: 0.7; /* Dim the button for mobile users */
+	pointer-events: none; /* Disable interaction */
+}
+
+#btn-add.disabled {
+	background-color: #aaa;
+	opacity: 0.7; /* Dim the button for mobile users */
+	pointer-events: none; /* Disable interaction */
+}
+
+/* The bottom side navigation menu */
+.templatenav {
+	height: 0;
+	/* 0 length - change this with JavaScript */
+	width: 100%;
+	position: fixed;
+	/* Stay in place */
+	z-index: 1;
+	/* Stay on bottom */
+	bottom: 0;
+	left: 0;
+	background-color: hsl(129, 16%, 98%);
+	transition: 0.75s;
+	display: flex;
+}
+
+.nav-template-left,
+.nav-template-right {
+	height: 100%;
+	flex-grow: 0;
+	flex-shrink: 0;
+}
+
+.nav-template-left {
+	flex-basis: 90%;
+	padding: 1em;
+	overflow-y: scroll; /* Enable vertical scrolling only for this div*/
+	/* background-color: blue; use this to show the positon  */
+}
+
+.nav-template-right {
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	padding-top: 0.29em;
+	flex-basis: 10%;
+	/* background-color: lightblue; use this to show the position*/
+}
+
+.close-button-layer {
+	height: 45px;
+	width: 45px;
+	margin-top: 0.8em;
+	/* background-color: white; use this to show the position*/
+}
+
+.close-button {
+	height: auto;
+	width: auto;
+	cursor: pointer;
+}
+
+.container-header h2 {
+	text-align: center;
+	color: #333;
+	font-size: 2em;
+	margin-top: 2px;
+	margin-bottom: 20px;
+}
+
+.container-header .container-header-text {
+	font-family: "Chewy", sans-serif;
+	font-size: 1.1em;
+	color: hsla(129, 69%, 53%, 1);
+}
+
+/* FOR INFORMATION */
+.info-content {
+	line-height: 1.6;
+	color: #555;
+}
+
+.info-content section {
+	margin-bottom: 20px;
+}
+
+.info-content h3 {
+	color: hsla(129, 69%, 53%, 1);
+	font-size: 1.5em;
+	margin-bottom: 10px;
+}
+
+.info-content p {
+	font-size: 1.1em;
+	margin-bottom: 15px;
+}
+
+.info-content ul {
+	list-style-type: disc;
+	margin-left: 20px;
+}
+
+.info-content li {
+	font-size: 1.1em;
+	line-height: 1.6;
+	color: #555;
+}
+
+.info-content a {
+	color: hsla(129, 69%, 53%, 1);
+	text-decoration: none;
+}
+
+.info-content a:hover {
+	text-decoration: underline;
+}
+
+.info-content .contact a {
+	font-weight: bold;
+}
+
+.hidden-features {
+	color: hsla(129, 69%, 53%, 1);
+}
+
+.legend-icon {
+	width: 37px;
+	height: 37px;
+	vertical-align: middle;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.legend-icon-user {
+	width: 52px;
+	height: 52px;
+	vertical-align: middle;
+	margin-left: 4px;
+	margin-right: 2px;
+}
+
+/* FOR ADD MARKER */
+.question-container {
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.question-text {
+	margin-right: 15px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #333;
+}
+
+#trash-type,
+#trash-status,
+input[type="text"] {
+	padding: 10px;
+	font-size: 16px;
+	border: 2px solid #4caf50;
+	border-radius: 5px;
+	background-color: #fff;
+	color: #333;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+#trash-type:hover,
+#trash-status:hover,
+input:hover {
+	border-color: #45a049;
+}
+
+#trash-type:focus,
+#trash-status:focus,
+input:focus {
+	outline: none;
+	box-shadow: 0 0 5px rgba(0, 128, 0, 0.5);
+	border-color: #45a049;
+}
+
+#trash-type:invalid,
+#trash-status:invalid {
+	color: gray; /* Placeholder text color */
+}
+
+option {
+	font-size: 16px;
+}
+
+.submit-button {
+	background-color: #4caf50;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	transition: background-color 0.3s ease;
+	margin-left: 47%;
+}
+
+.submit-button:hover {
+	background-color: #45a049;
+}
+
+#popup-div {
+	display: flex;
+	flex-direction: column;
+	justify-self: center;
+	align-items: center;
+	font-family: "Raleway", "Chewy", "Mogra", sans-serif;
+	font-size: 12px;
+	color: #333;
+	padding: 0;
+}
+
+#status-sampah {
+	padding: 6px;
+	font-size: 12px;
+	border: 2px solid #4caf50;
+	border-radius: 5px;
+	margin-top: 0.4em;
+	background-color: #fff;
+	color: #333;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	min-width: 7em;
+}
+
+#status-sampah:hover {
+	border-color: #45a049;
+}
+
+#status-sampah:focus {
+	outline: none;
+	box-shadow: 0 0 5px rgba(0, 128, 0, 0.5);
+	border-color: #45a049;
+}
+
+#status-sampah:invalid {
+	color: gray; /* Placeholder text color */
+}
+
+.popup-submit-button {
+	background-color: #4caf50;
+	color: white;
+	padding: 6px 16px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 12px;
+	transition: background-color 0.3s ease;
+	margin-left: 0.5em;
+	min-width: 6em;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px), screen and (max-width: 600px) {
+	.nav-template-left {
+		flex-basis: 85%;
+		/* background-color: blue; use this to show the positon  */
+	}
+
+	.nav-template-right {
+		flex-basis: 15%;
+		/* background-color: lightblue; use this to show the position*/
+	}
+
+	.close-button-layer {
+		height: 35px;
+		width: 35px;
+		margin-top: 0.8em;
+		/* background-color: white; use this to show the position*/
+	}
+
+	/* FOR INFORMATION */
+	.container-header h2 {
+		font-size: 1.6em;
+		margin-top: 0px;
+		text-align: start;
+	}
+
+	.info-content h3 {
+		font-size: 1.3em;
+	}
+
+	.info-content p,
+	.info-content li {
+		font-size: 1em;
+	}
+	/* FOR ADD MARKER */
+	.question-container {
+		justify-content: start;
+	}
+
+	.question-text {
+		font-size: 1em;
+	}
+
+	select {
+		font-size: 0.95em;
+	}
+
+	option {
+		font-size: 0.95em;
+	}
+
+	.submit-button {
+		font-size: 1em;
+		margin-left: 0;
+	}
+}
