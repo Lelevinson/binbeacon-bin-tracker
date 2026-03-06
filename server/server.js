@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
 import cors from "cors";
+import cron from "node-cron";
 import { gettingCoords } from "./markergetter.js";
 import supabase from "./supabaseClient.js";
 
@@ -58,6 +59,20 @@ app
 	.on("error", (err) => {
 		console.error("Server error:", err);
 	});
+//------------------------------------------------------------------------------
+// Keep Supabase alive — ping every 5 days to prevent free tier auto-pause
+cron.schedule("0 0 */5 * *", async () => {
+	try {
+		const { data, error } = await supabase
+			.from("markers1")
+			.select("coordinate_x")
+			.limit(1);
+		if (error) console.error("Keep-alive ping failed:", error.message);
+		else console.log("Keep-alive ping successful");
+	} catch (err) {
+		console.error("Keep-alive ping error:", err);
+	}
+});
 //------------------------------------------------------------------------------
 
 const addingMarkersTDB = async (x, y, tipe, nama, stats) => {
