@@ -1,7 +1,7 @@
 import { RecBin, TwoBin, NorBin } from "./classes.js";
 
 //const link = "http://localhost:3000"; // for dev
-const link = "https://binbeacon.onrender.com";
+const link = "https://bin-beacon.onrender.com";
 
 //	Selectable tile layers
 var osm = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
