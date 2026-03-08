@@ -210,7 +210,6 @@ async function updateStatus(x, y, updateValue) {
 		console.error("Error:", error);
 	}
 }
-updateStatus();
 
 async function sendMarkersTDB(name, corx, cory, type, stts) {
 	try {
@@ -347,11 +346,9 @@ window.storeUpdates = function (x, y) {
 };
 
 window.refreshPage = async function () {
-	await updateStatus();
 	location.reload();
 };
 
 async function refreshTwo() {
-	await sendMarkersTDB();
 	location.reload();
 }
