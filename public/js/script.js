@@ -309,7 +309,7 @@ window.closeNavAdd = function () {
 	document.getElementById("btn-question").classList.remove("disabled");
 };
 
-window.storeValues = function () {
+window.storeValues = async function () {
 	// Get the selected value of the first dropdown
 	var userName = document.getElementById("userName").value || null; // Default to "null" if empty
 
@@ -330,8 +330,8 @@ window.storeValues = function () {
 		console.log("Trash Status:", trashStatus);
 
 		//sending value to function -> server -> databse
-		sendMarkersTDB(userName, lati, long, trashType, trashStatus);
-		refreshTwo();
+		await sendMarkersTDB(userName, lati, long, trashType, trashStatus);
+		location.reload();
 	} else {
 		alert("Please make sure to select both trash type and trash status.");
 	}
