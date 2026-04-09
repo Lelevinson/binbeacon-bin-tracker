@@ -8,9 +8,9 @@ BinBeacon lets users discover nearby bins, contribute new bin locations, and upd
 
 ---
 
-## Why I Built This
+## Why We Built This
 
-I wanted to build a practical project that combines geolocation, map UX, and cloud data syncing in a way that feels useful outside of class demos.
+We wanted to build a practical project that combines geolocation, map UX, and cloud data syncing in a way that feels useful outside of class demos.
 
 Main goals:
 
